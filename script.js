@@ -1,14 +1,52 @@
 const themeToggle = document.getElementById("themeToggle");
+
 const savedTheme = localStorage.getItem("cv-theme");
 
-if (savedTheme === "dark") document.body.classList.add("dark");
 
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  localStorage.setItem(
-    "cv-theme",
-    document.body.classList.contains("dark") ? "dark" : "light"
-  );
-});
+// =========================
+// LOAD SAVED THEME
+// =========================
 
-document.getElementById("year").textContent = new Date().getFullYear();
+if (savedTheme === "dark") {
+  document.body.classList.add("dark");
+}
+
+
+// =========================
+// THEME TOGGLE
+// =========================
+
+if (themeToggle) {
+
+  themeToggle.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+    const currentTheme =
+      document.body.classList.contains("dark")
+        ? "dark"
+        : "light";
+
+    localStorage.setItem(
+      "cv-theme",
+      currentTheme
+    );
+
+  });
+
+}
+
+
+// =========================
+// CURRENT YEAR
+// =========================
+
+const yearElement =
+  document.getElementById("year");
+
+if (yearElement) {
+
+  yearElement.textContent =
+    new Date().getFullYear();
+
+}
